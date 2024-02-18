@@ -25,7 +25,6 @@ void main() {
         platform: TargetPlatform.android,
       ),
     );
-    await screenMatchesGolden(
-        tester, 'd');
+    await screenMatchesGolden(tester, 'd');
   });
 }
