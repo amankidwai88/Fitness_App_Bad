@@ -1,4 +1,5 @@
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
+import 'package:crud/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,10 +109,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings, color: Colors.white),
-                title: Text("Settings", style: TextStyle(color: Colors.white)),
+                leading: const Icon(Icons.settings, color: Colors.white),
+                title: const Text("Settings",
+                    style: TextStyle(color: Colors.white)),
                 onTap: () {
                   Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                title: Text("User Profile",
+                    style: TextStyle(color: Colors.grey[400])),
+                onTap: () {
+                  Navigator.pop(context); // Close the drawer
+                  // Navigate to the Home screen
+                  Navigator.pushReplacement(
+                    //check alignment sign up > profile else login > home page
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()),
+                  );
                 },
               ),
               Spacer(),
