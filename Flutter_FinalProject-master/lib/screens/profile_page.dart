@@ -69,6 +69,28 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 50), // MyTextBox
 
           //gymstuff
+          MyTextBox(
+            text: 'Height',
+            sectionName: 'Height',
+            onPressed: () => editField('Height'),
+          ),
+          //
+          MyTextBox(
+            text: 'DOB',
+            sectionName: 'DOB',
+            onPressed: () => editField('DOB'),
+          ),
+          MyTextBox(
+            text: 'Gender',
+            sectionName: 'Gender',
+            onPressed: () => editField('Gender'),
+          ),
+          MyTextBox(
+            text: 'Weight',
+            sectionName: 'Weight',
+            onPressed: () => editField('Weight'),
+          ),
+
           //user details
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
