@@ -2,6 +2,7 @@ import 'package:crud/bloc/log_in/log_in_bloc.dart';
 import 'package:crud/bloc/log_in/log_in_event.dart';
 import 'package:crud/bloc/log_in/log_in_state.dart';
 import 'package:crud/models/User_model.dart';
+import 'package:crud/screens/Dashboard/dashboard.dart';
 import 'package:crud/screens/string.dart';
 import 'package:crud/screens/textfirld.dart';
 import 'package:flutter/cupertino.dart';
@@ -130,6 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 										},
 										suffixIcon: IconButton(
 											onPressed: () {
+
 												setState(() {
 													obscurePassword = !obscurePassword;
 													if(obscurePassword) {
@@ -233,6 +235,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 											width: MediaQuery.of(context).size.width * 0.5,
 											child: TextButton(
 												onPressed: () {
+                  //         Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  // );
 													if (_formKey.currentState!.validate()) {
 														MyUser myUser = MyUser.empty;
 														myUser = myUser.copyWith(
@@ -251,6 +257,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 													}
 												},
 												style: TextButton.styleFrom(
+                          
 													elevation: 3.0,
 													backgroundColor: Theme.of(context).colorScheme.primary,
 													foregroundColor: Colors.white,
