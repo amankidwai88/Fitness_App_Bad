@@ -5,7 +5,6 @@ import 'package:crud/screens/profile_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
   List lastWorkoutArr = [
     {
       "name": "Full Body Workout",
@@ -39,6 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
       "progress": 0.7
     },
   ];
+
+  @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
 
@@ -110,28 +110,28 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
               children: [
-                SizedBox(height: 150),
+                const SizedBox(height: 150),
                 ListTile(
-                  leading: Icon(Icons.home, color: Colors.white),
-                  title: Text("Home", style: TextStyle(color: Colors.white)),
+                  leading: const Icon(Icons.home, color: Colors.white),
+                  title: const Text("Home", style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
                     // Navigate to the Home screen
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
                     );
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.info, color: Colors.white),
-                  title: Text("About", style: TextStyle(color: Colors.white)),
+                  leading: const Icon(Icons.info, color: Colors.white),
+                  title: const Text("About", style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
                     // Navigate to the About screen
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
                     );
                   },
                 ),
@@ -158,15 +158,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                Spacer(),
+                const Spacer(),
                 ListTile(
-                  leading: Icon(Icons.logout, color: Colors.white),
-                  title: Text("Logout", style: TextStyle(color: Colors.white)),
+                  leading: const Icon(Icons.logout, color: Colors.white),
+                  title: const Text("Logout", style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -174,11 +174,11 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
             child: SafeArea(
                 child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
@@ -297,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 70,
                                   height: 25,
                                 ),
