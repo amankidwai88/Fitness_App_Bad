@@ -1,6 +1,7 @@
 import 'package:crud/Components/Colors.dart';
 import 'package:crud/Components/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
+import 'package:crud/screens/exercise.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -318,7 +319,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fontWeight: FontWeight.w700),
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ExerciseView()),
+                                  );
+                                },
                                 child: Text(
                                   "See More",
                                   style: TextStyle(
