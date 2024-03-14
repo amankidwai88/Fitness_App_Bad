@@ -47,15 +47,18 @@ class _WorkoutViewState extends State<WorkoutView> {
         backgroundColor: TColor.white,
         centerTitle: true,
         elevation: 0.1,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 25,
-              height: 25,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Image.asset(
+        //       "assets/img/back.png",
+
+        //       width: 25,
+        //       height: 25,
+        //     )
+
+        //     ),
         title: Text(
           "Workout",
           style: TextStyle(

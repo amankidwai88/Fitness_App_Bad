@@ -1,6 +1,6 @@
+import 'package:crud/common/color_extension.dart';
 import 'package:flutter/material.dart';
 
-import '../common/color_extension.dart';
 
 enum RoundButtonType { primary, primaryText }
 

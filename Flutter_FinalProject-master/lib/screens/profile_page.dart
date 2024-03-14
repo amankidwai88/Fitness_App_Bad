@@ -1,6 +1,6 @@
 //import 'dart:ffi';
 
-import 'package:crud/Components/text_box.dart';
+import 'package:crud/common_widget/text_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,9 @@
 import 'package:crud/common_widget/tab_button.dart';
-import 'package:crud/screens/Dashboard/workout_detail_view.dart';
+import 'package:crud/screens/exercise/workout_detail_view.dart';
 import 'package:flutter/material.dart';
 
-import '../common/color_extension.dart';
-import '../common_widget/round_button.dart';
+import '../../common/color_extension.dart';
+import '../../common_widget/round_button.dart';
 
 class ExerciseView extends StatefulWidget {
   const ExerciseView({super.key});
@@ -48,15 +48,16 @@ class _ExerciseViewState extends State<ExerciseView> {
         backgroundColor: Colors.grey[400],
         centerTitle: true,
         elevation: 0.1,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Image.asset(
-              "assets/img/back.png",
-              width: 25,
-              height: 25,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: Image.asset(
+        //       "assets/img/back.png",
+        //       width: 25,
+        //       height: 25,
+        //     )
+        //     ),
         title: Text(
           "Exercise",
           style: TextStyle(

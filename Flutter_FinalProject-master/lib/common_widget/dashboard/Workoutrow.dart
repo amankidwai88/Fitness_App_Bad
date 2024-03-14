@@ -1,4 +1,4 @@
-import 'package:crud/Components/Colors.dart';
+import 'package:crud/common/color_extension.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutRow extends StatelessWidget {

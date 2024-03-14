@@ -1,8 +1,8 @@
+import 'package:crud/common_widget/workout_pg/response_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../common/color_extension.dart';
-import '../../common_widget/response_row.dart';
 
 class WorkoutDetailView extends StatefulWidget {
   const WorkoutDetailView({super.key});

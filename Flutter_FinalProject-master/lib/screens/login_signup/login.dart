@@ -1,6 +1,7 @@
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
-import 'package:crud/screens/string.dart';
-import 'package:crud/screens/textfirld.dart';
+import 'package:crud/common_widget/login_signup/string.dart';
+import 'package:crud/common_widget/login_signup/textfirld.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

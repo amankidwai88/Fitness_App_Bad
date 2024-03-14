@@ -1,8 +1,8 @@
 import 'package:crud/bloc/auth/authentication_bloc.dart';
 import 'package:crud/bloc/log_in/log_in_bloc.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
-import 'package:crud/screens/login.dart';
-import 'package:crud/screens/signup.dart';
+import 'package:crud/screens/login_signup/login.dart';
+import 'package:crud/screens/login_signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

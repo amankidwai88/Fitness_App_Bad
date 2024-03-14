@@ -3,7 +3,7 @@ import 'package:crud/bloc/auth/authentication_state.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/bloc/user/my_user_bloc.dart';
 import 'package:crud/screens/Dashboard/dashboard.dart';
-import 'package:crud/screens/welcome.dart';
+import 'package:crud/screens/login_signup/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

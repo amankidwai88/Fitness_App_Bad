@@ -1,6 +1,6 @@
 import 'package:crud/bloc/auth/authentication_bloc.dart';
 import 'package:crud/repo/user_repo.dart';
-import 'package:crud/screens/appview.dart';
+import 'package:crud/screens/start/appview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
