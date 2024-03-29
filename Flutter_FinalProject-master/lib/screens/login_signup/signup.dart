@@ -5,6 +5,7 @@ import 'package:crud/common_widget/login_signup/string.dart';
 import 'package:crud/common_widget/login_signup/textfirld.dart';
 
 import 'package:crud/models/User_model.dart';
+import 'package:crud/screens/Profile/CreateProfile.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -226,10 +227,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: TextButton(
                           onPressed: () {
-                            //         Navigator.pushReplacement(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                            // );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CompleteProfileView()),
+                            );
                             if (_formKey.currentState!.validate()) {
                               MyUser myUser = MyUser.empty;
                               myUser = myUser.copyWith(

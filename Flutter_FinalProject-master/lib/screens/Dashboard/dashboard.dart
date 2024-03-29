@@ -1,6 +1,7 @@
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/exercise/exercise.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -114,25 +115,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 150),
                 ListTile(
                   leading: const Icon(Icons.home, color: Colors.white),
-                  title: const Text("Home", style: TextStyle(color: Colors.white)),
+                  title:
+                      const Text("Home", style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
                     // Navigate to the Home screen
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
                     );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.info, color: Colors.white),
-                  title: const Text("About", style: TextStyle(color: Colors.white)),
+                  title: const Text("About",
+                      style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
                     // Navigate to the About screen
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
                     );
                   },
                 ),
@@ -155,14 +160,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       //check alignment sign up > profile else login > home page
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ProfilePage()),
+                          builder: (context) => const CompleteProfileView()),
                     );
                   },
                 ),
                 const Spacer(),
                 ListTile(
                   leading: const Icon(Icons.logout, color: Colors.white),
-                  title: const Text("Logout", style: TextStyle(color: Colors.white)),
+                  title: const Text("Logout",
+                      style: TextStyle(color: Colors.white)),
                   onTap: () {
                     Navigator.pop(context);
                   },
