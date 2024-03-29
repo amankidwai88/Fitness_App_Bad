@@ -1,8 +1,8 @@
+import 'package:crud/common/color_extension.dart';
+import 'package:crud/common_widget/workout_pg/round_button.dart';
 import 'package:flutter/material.dart';
 import 'workout_detail_view.dart';
 
-import '../../common/color_extension.dart';
-import '../../common_widget/round_button.dart';
 
 class WorkoutView extends StatefulWidget {
   const WorkoutView({super.key});
