@@ -1,7 +1,9 @@
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/CreateProfile.dart';
+import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-    final currentUser = FirebaseAuth.instance.currentUser; 
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   List lastWorkoutArr = [
     {
@@ -91,13 +93,28 @@ class _HomeScreenState extends State<HomeScreen> {
           automaticallyImplyLeading: false,
           // title:
           actions: [
+            // IconButton(
+            //   onPressed: () {},
+            //   icon: const Icon(
+            //     Icons.notifications_active,
+            //     size: 30,
+            //   ),
+            // ),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_active,
-                size: 30,
-              ),
-            ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationView(),
+                    ),
+                  );
+                },
+                icon: Image.asset(
+                  "assets/img/notification_active.png",
+                  width: 25,
+                  height: 25,
+                  fit: BoxFit.fitHeight,
+                )),
             IconButton(
               onPressed: () {
                 context.read<SignInBloc>().add(const SignOutRequired());
@@ -154,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ListTile(
                   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
-                  title: Text("User Profile",
+                  title: Text("Create Profile",
                       style: TextStyle(color: Colors.grey[400])),
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
@@ -167,8 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-
-                                ListTile(
+                ListTile(
                   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
                   title: Text("Profile Aman",
                       style: TextStyle(color: Colors.grey[400])),
@@ -179,6 +195,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ProfilePage()),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                  title: Text("View Profile",
+                      style: TextStyle(color: Colors.grey[400])),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to the Home screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileView()),
                     );
                   },
                 ),
