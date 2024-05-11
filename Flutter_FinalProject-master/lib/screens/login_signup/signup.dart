@@ -32,12 +32,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool containsNumber = false;
   bool containsSpecialChar = false;
   bool contains8Length = false;
+  String? _errorMsg;
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (context) => const CompleteProfileView()),
+          // );
           setState(() {
             signUpRequired = false;
           });
@@ -46,7 +52,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             signUpRequired = true;
           });
         } else if (state is SignUpFailure) {
-          return;
+          setState(() {
+            signUpRequired = false;
+            _errorMsg = 'Email Already exists';
+          });
         }
       },
       child: Form(
@@ -61,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
+                    errorMsg: _errorMsg,
                     keyboardType: TextInputType.emailAddress,
                     prefixIcon: const Icon(CupertinoIcons.mail_solid),
                     validator: (val) {
@@ -203,36 +213,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: MyTextField(
-                    controller: nameController,
-                    hintText: 'Name',
-                    obscureText: false,
-                    keyboardType: TextInputType.name,
-                    prefixIcon: const Icon(CupertinoIcons.person_fill),
-                    validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Please fill in this field';
-                      } else if (val.length > 30) {
-                        return 'Name too long';
-                      }
-                      return null;
-                    }),
-              ),
+              // const SizedBox(height: 10),
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width * 0.9,
+              //   child: MyTextField(
+              //       controller: nameController,
+              //       hintText: 'Name',
+              //       obscureText: false,
+              //       keyboardType: TextInputType.name,
+              //       prefixIcon: const Icon(CupertinoIcons.person_fill),
+              //       validator: (val) {
+              //         if (val!.isEmpty) {
+              //           return 'Please fill in this field';
+              //         } else if (val.length > 30) {
+              //           return 'Name too long';
+              //         }
+              //         return null;
+              //       }),
+              // ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               !signUpRequired
                   ? SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const CompleteProfileView()),
-                            );
+                            // Navigator.push (
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           const CompleteProfileView()),
+                            // );
                             if (_formKey.currentState!.validate()) {
                               MyUser myUser = MyUser.empty;
                               myUser = myUser.copyWith(

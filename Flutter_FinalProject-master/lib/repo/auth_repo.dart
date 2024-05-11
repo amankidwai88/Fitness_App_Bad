@@ -12,7 +12,7 @@ class FirebaseUserRepository implements UserRepository {
 	})  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
 	final FirebaseAuth _firebaseAuth;
-	final usersCollection = FirebaseFirestore.instance.collection('users');
+	final usersCollection = FirebaseFirestore.instance.collection('fitnessusers');
 
 
 	@override

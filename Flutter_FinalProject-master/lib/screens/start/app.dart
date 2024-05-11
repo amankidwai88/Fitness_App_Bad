@@ -1,4 +1,6 @@
 import 'package:crud/bloc/auth/authentication_bloc.dart';
+import 'package:crud/bloc/bloc/firebase_user_bloc.dart';
+import 'package:crud/repo/firebaseUser.dart';
 import 'package:crud/repo/user_repo.dart';
 import 'package:crud/screens/start/appview.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,11 @@ class MainApp extends StatelessWidget {
     return MultiRepositoryProvider(providers: [
       RepositoryProvider<AuthenticationBloc>(
           create: (_) => AuthenticationBloc(myUserRepository: userRepository)),
+
+                    BlocProvider<TodoBloc>(
+            create: (context) => TodoBloc(FirestoreService()),
+          ),
+
     ], child: const MyAppView());
   }
 }

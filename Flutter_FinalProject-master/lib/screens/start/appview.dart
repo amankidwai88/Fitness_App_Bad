@@ -42,8 +42,10 @@ class MyAppView extends StatelessWidget {
                       myUserId:
                           context.read<AuthenticationBloc>().state.user!.uid)),
               ),
+
+              
             ],
-            child: const HomeScreen(),
+            child: const HomeScreen(), 
           );
         } else {
           return const WelcomeScreen();

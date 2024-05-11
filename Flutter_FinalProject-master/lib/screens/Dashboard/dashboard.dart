@@ -4,6 +4,7 @@ import 'package:crud/common/color_extension.dart';
 import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/exercise/exercise.dart';
 import 'package:crud/screens/profile_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+    final currentUser = FirebaseAuth.instance.currentUser; 
+
   List lastWorkoutArr = [
     {
       "name": "Full Body Workout",
@@ -156,11 +159,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.pop(context); // Close the drawer
                     // Navigate to the Home screen
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       //check alignment sign up > profile else login > home page
                       context,
                       MaterialPageRoute(
                           builder: (context) => const CompleteProfileView()),
+                    );
+                  },
+                ),
+
+                                ListTile(
+                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                  title: Text("Profile Aman",
+                      style: TextStyle(color: Colors.grey[400])),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to the Home screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()),
                     );
                   },
                 ),

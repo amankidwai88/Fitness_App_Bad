@@ -13,7 +13,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 //user
-  final currentUser = FirebaseAuth.instance.currentUser;
+  final currentUser = FirebaseAuth.instance.currentUser; 
 
   //edit field
   Future<void> editField(String field) async {}
@@ -37,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 10),
           //user email
           Text(
-            currentUser?.email ?? '',
+            currentUser?.email ?? 'nothing',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey[700]),
           ),
@@ -47,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Padding(
             padding: const EdgeInsets.only(left: 25.0),
             child: Text(
-              'My Details',
+              'Details',
               style: TextStyle(color: Colors.grey[600]),
             ),
           ),
