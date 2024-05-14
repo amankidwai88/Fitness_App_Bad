@@ -5,6 +5,7 @@ import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
+import 'package:crud/screens/exercise/instructions_page.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -209,6 +210,60 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ProfileView()),
+                    );
+                  },
+                ),
+                                ListTile(
+                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                  title: Text("Bicep Curls",
+                      style: TextStyle(color: Colors.blue[500])),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to the Home screen
+                    Navigator.push(
+                      //check alignment sign up > profile else login > home page
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ExercisesStepDetails(eObj: {
+                                "title": "Bicep Curls",
+                              })),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                  title:
+                      Text("Squats", style: TextStyle(color: Colors.blue[500])),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to the Home screen
+                    Navigator.push(
+                      //check alignment sign up > profile else login > home page
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ExercisesStepDetails(eObj: {
+                                "title": "Squats",
+                              })),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                  title: Text("Deadlifts",
+                      style: TextStyle(color: Colors.blue[500])),
+                  onTap: () {
+                    Navigator.pop(context); // Close the drawer
+                    // Navigate to the Home screen
+                    Navigator.pushReplacement(
+                      //check alignment sign up > profile else login > home page
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const ExercisesStepDetails(eObj: {
+                                "title": "Deadlifts",
+                              })),
                     );
                   },
                 ),
