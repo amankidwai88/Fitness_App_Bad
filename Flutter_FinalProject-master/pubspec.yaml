@@ -12,7 +12,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -34,6 +33,9 @@ dependencies:
   simple_circular_progress_bar: ^1.0.2
   animated_toggle_switch: ^0.6.2
   readmore: ^2.1.0
+  tflite_flutter: ^0.10.4
+  image: ^4.1.4
+  camera: ^0.10.5+9
 
 
 
@@ -42,7 +44,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
