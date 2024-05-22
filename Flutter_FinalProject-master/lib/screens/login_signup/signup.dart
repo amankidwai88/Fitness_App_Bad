@@ -39,18 +39,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => const CompleteProfileView()),
-          // );
           setState(() {
             signUpRequired = false;
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //       builder: (context) =>
+            //           CompleteProfileView(emailController.text)),
+            // );
           });
         } else if (state is SignUpProcess) {
           setState(() {
             signUpRequired = true;
           });
+          // } else if (state is SignUpPage) {
+          //   signUpRequired = false;
+
+          //   setState(() {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //           builder: (context) =>
+          //               CompleteProfileView(emailController.text)),
+          //     );
+          //   });
         } else if (state is SignUpFailure) {
           setState(() {
             signUpRequired = false;
@@ -237,12 +249,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: MediaQuery.of(context).size.width * 0.5,
                       child: TextButton(
                           onPressed: () {
-                            // Navigator.push (
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           const CompleteProfileView()),
-                            // );
                             if (_formKey.currentState!.validate()) {
                               MyUser myUser = MyUser.empty;
                               myUser = myUser.copyWith(
@@ -253,6 +259,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               setState(() {
                                 context.read<SignUpBloc>().add(SignUpRequired(
                                     myUser, passwordController.text));
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CompleteProfileView(
+                                          emailController.text)),
+                                );
                               });
                             }
                           },

@@ -170,35 +170,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.pop(context);
                   },
                 ),
-                ListTile(
-                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
-                  title: Text("Create Profile",
-                      style: TextStyle(color: Colors.grey[400])),
-                  onTap: () {
-                    Navigator.pop(context); // Close the drawer
-                    // Navigate to the Home screen
-                    Navigator.push(
-                      //check alignment sign up > profile else login > home page
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CompleteProfileView()),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.account_circle, color: Colors.grey[400]),
-                  title: Text("Profile Aman",
-                      style: TextStyle(color: Colors.grey[400])),
-                  onTap: () {
-                    Navigator.pop(context); // Close the drawer
-                    // Navigate to the Home screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfilePage()),
-                    );
-                  },
-                ),
+                // ListTile(
+                //   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                //   title: Text("Create Profile",
+                //       style: TextStyle(color: Colors.grey[400])),
+                //   onTap: () {
+                //     Navigator.pop(context); // Close the drawer
+                //     // Navigate to the Home screen
+                //     Navigator.push(
+                //       //check alignment sign up > profile else login > home page
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) =>
+                //               const CompleteProfileView("ghgh")),
+                //     );
+                //   },
+                // ),
+                // ListTile(
+                //   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
+                //   title: Text("Profile Aman",
+                //       style: TextStyle(color: Colors.grey[400])),
+                //   onTap: () {
+                //     Navigator.pop(context); // Close the drawer
+                //     // Navigate to the Home screen
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => const ProfilePage()),
+                //     );
+                //   },
+                // ),
                 ListTile(
                   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
                   title: Text("View Profile",
@@ -213,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                                ListTile(
+                ListTile(
                   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
                   title: Text("Bicep Curls",
                       style: TextStyle(color: Colors.blue[500])),
