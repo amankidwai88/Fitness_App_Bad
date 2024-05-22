@@ -1,16 +1,19 @@
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/common_widget/histogram.dart';
 import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
+import 'package:crud/screens/exercise/exercise_provider.dart';
 import 'package:crud/screens/exercise/instructions_page.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -213,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
-                                ListTile(
+                ListTile(
                   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
                   title: Text("Bicep Curls",
                       style: TextStyle(color: Colors.blue[500])),
@@ -448,6 +451,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(
                             height: media.width * 0.05,
+                          ),
+                          //histogram code
+                          ChangeNotifierProvider(
+                            create: (context) => ExerciseProvider(),
+                            child: Histogram(),
                           ),
                           ListView.builder(
                               padding: EdgeInsets.zero,
