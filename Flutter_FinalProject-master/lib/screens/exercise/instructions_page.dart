@@ -22,25 +22,25 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
       "no": "01",
       "title": "Hold the Dumbbells",
       "detail":
-      "Start by holding a dumbbell in each hand, palms facing forward, and arms fully extended down by your sides."
+          "Start by holding a dumbbell in each hand, palms facing forward, and arms fully extended down by your sides."
     },
     {
       "no": "02",
       "title": "Curl the Weights",
       "detail":
-      "Keeping your upper arms stationary, exhale as you curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level."
+          "Keeping your upper arms stationary, exhale as you curl the weights while contracting your biceps. Continue to raise the weights until your biceps are fully contracted and the dumbbells are at shoulder level."
     },
     {
       "no": "03",
       "title": "Lower the Weights",
       "detail":
-      "Inhale as you slowly lower the dumbbells back to the starting position, fully extending your arms. Make sure to control the movement and avoid swinging the weights."
+          "Inhale as you slowly lower the dumbbells back to the starting position, fully extending your arms. Make sure to control the movement and avoid swinging the weights."
     },
     {
       "no": "04",
       "title": "Focus on Form",
       "detail":
-      "Maintain proper form throughout the exercise, keeping your elbows close to your body and avoiding any momentum or cheating. Focus on feeling the contraction in your biceps with each repetition."
+          "Maintain proper form throughout the exercise, keeping your elbows close to your body and avoiding any momentum or cheating. Focus on feeling the contraction in your biceps with each repetition."
     }
   ];
 
@@ -127,12 +127,25 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Image.asset(
-                          "assets/img/Play.png",
-                          width: 30,
-                          height: 30,
+                        icon: Hero(
+                          tag:
+                              'play_button_${widget.eObj["title"]}', // Unique tag based on title
+                          child: Image.asset(
+                            "assets/img/Play.png",
+                            width: 30,
+                            height: 30,
+                          ),
                         ),
                       ),
+
+                      // IconButton(
+                      //   onPressed: () {},
+                      //   icon: Image.asset(
+                      //     "assets/img/Play.png",
+                      //     width: 30,
+                      //     height: 30,
+                      //   ),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -179,8 +192,8 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                       color: TColor.gray,
                       fontSize: 12,
                     ),
-                    moreStyle:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                    moreStyle: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(
                     height: 15,
@@ -254,7 +267,8 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                             ),
                             Text(
                               " ${(index + 1) * 15} Calories Burn",
-                              style: TextStyle(color: TColor.gray, fontSize: 10),
+                              style:
+                                  TextStyle(color: TColor.gray, fontSize: 10),
                             ),
                             Text(
                               " ${index + 1} ",
@@ -265,7 +279,8 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                             ),
                             Text(
                               " times",
-                              style: TextStyle(color: TColor.gray, fontSize: 16),
+                              style:
+                                  TextStyle(color: TColor.gray, fontSize: 16),
                             )
                           ],
                         );
@@ -283,17 +298,19 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
             left: 10,
             right: 10,
             bottom: 0,
-            child: RoundButton(title: "Start Exercise", elevation: 0, onPressed: () { // Navigate to the camera screen upon button press
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => YourCameraWidget()),
-              );}),
+            child: RoundButton(
+                title: "Start Exercise",
+                elevation: 0,
+                onPressed: () {
+                  // Navigate to the camera screen upon button press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => YourCameraWidget()),
+                  );
+                }),
           ),
         ],
       ),
     );
   }
 }
-
-
-

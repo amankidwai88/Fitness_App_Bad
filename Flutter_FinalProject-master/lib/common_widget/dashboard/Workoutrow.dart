@@ -1,4 +1,5 @@
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/screens/exercise/instructions_page.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutRow extends StatelessWidget {
@@ -47,25 +48,19 @@ class WorkoutRow extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
-                // SimpleAnimationProgressBar(
-                //   height: 15,
-                //   width: media.width * 0.5,
-                //   backgroundColor: Colors.grey.shade100,
-                //   foregrondColor: Colors.purple,
-                //   ratio: wObj["progress"] as double? ?? 0.0,
-                //   direction: Axis.horizontal,
-                //   curve: Curves.fastLinearToSlowEaseIn,
-                //   duration: const Duration(seconds: 3),
-                //   borderRadius: BorderRadius.circular(7.5),
-                //   gradientColor: LinearGradient(
-                //       colors: TColor.primaryG,
-                //       begin: Alignment.centerLeft,
-                //       end: Alignment.centerRight),
-                // ),
               ],
             )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ExercisesStepDetails(
+                        eObj: wObj['next'],
+                      ),
+                    ),
+                  );
+                },
                 icon: Image.asset(
                   "assets/next_icon.png",
                   width: 30,
