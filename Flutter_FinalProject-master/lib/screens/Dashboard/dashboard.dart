@@ -4,17 +4,22 @@ import 'package:crud/bloc/bloc/firebase_user_state.dart';
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/common_widget/histogram.dart';
+
 import 'package:crud/repo/firebaseUser.dart';
+
 import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
+import 'package:crud/screens/exercise/exercise_provider.dart';
 import 'package:crud/screens/exercise/instructions_page.dart';
 import 'package:crud/screens/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -149,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
+
         drawer: Container(
           width: MediaQuery.of(context).size.width * 0.75,
           child: Drawer(
@@ -510,25 +516,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   height: media.width * 0.05,
                                 ),
-                                ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: lastWorkoutArr.length,
-                                    itemBuilder: (context, index) {
-                                      var wObj =
-                                          lastWorkoutArr[index] as Map? ?? {};
-                                      return InkWell(
-                                          onTap: () {},
-                                          child: WorkoutRow(wObj: wObj));
-                                    }),
-                              ]))));
-            } else {
-              return Container();
-            }
-          },
-        ));
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: media.width * 0.05,
+                          ),
+                          //histogram code
+                          ChangeNotifierProvider(
+                            create: (context) => ExerciseProvider(),
+                            child: Histogram(),
+                          ),
+                          ListView.builder(
+                              padding: EdgeInsets.zero,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: lastWorkoutArr.length,
+                              itemBuilder: (context, index) {
+                                var wObj = lastWorkoutArr[index] as Map? ?? {};
+                                return InkWell(
+                                    onTap: () {},
+                                    child: WorkoutRow(wObj: wObj));
+                              }),
+                        ])))));
+
   }
 
   Widget _buildMenuButton({
