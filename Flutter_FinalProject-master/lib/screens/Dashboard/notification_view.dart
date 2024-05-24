@@ -12,19 +12,47 @@ class NotificationView extends StatefulWidget {
 
 class _NotificationViewState extends State<NotificationView> {
   List notificationArr = [
-    {"image": "assets/img/Workout1.png", "title": "Hey, it’s time for lunch!", "time": "About 1 minutes ago"},
-    {"image": "assets/img/Workout2.png", "title": "Arisha, don’t miss your deadlift reps today.", "time": "About 3 hours ago"},
-    {"image": "assets/img/Workout3.png", "title": "Hey, let’s add some proteins to your meal!", "time": "About 3 hours ago"},
-    {"image": "assets/img/Workout1.png", "title": "Congratulations, You have completed today's goal!", "time": "29 May"},
-    {"image": "assets/img/Workout2.png", "title": "Arisha, let's get the fat burning!", "time": "8 April"},
-    {"image": "assets/img/Workout3.png", "title": "Arisha, You have missed your squat workout today.", "time": "8 April"},
+    {
+      "image": "assets/img/Workout1.png",
+      "title": "Hey, it’s time for lunch!",
+      "time": "About 1 minutes ago"
+    },
+    {
+      "image": "assets/img/Workout2.png",
+      "title": "Arisha, don’t miss your deadlift reps today.",
+      "time": "About 3 hours ago"
+    },
+    {
+      "image": "assets/img/Workout3.png",
+      "title": "Hey, let’s add some proteins to your meal!",
+      "time": "About 3 hours ago"
+    },
+    {
+      "image": "assets/img/Workout1.png",
+      "title": "Congratulations, You have completed today's goal!",
+      "time": "29 May"
+    },
+    {
+      "image": "assets/img/Workout2.png",
+      "title": "Arisha, let's get the fat burning!",
+      "time": "8 April"
+    },
+    {
+      "image": "assets/img/Workout3.png",
+      "title": "Arisha, You have missed your squat workout today.",
+      "time": "8 April"
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: TColor.backgrouncolor, // Set the app bar color
+
       appBar: AppBar(
-        backgroundColor: TColor.white,
+        toolbarHeight: 100,
+        backgroundColor: TColor.backgrouncolor, // Set the app bar color
+
         centerTitle: true,
         elevation: 0,
         leading: InkWell(
@@ -67,15 +95,19 @@ class _NotificationViewState extends State<NotificationView> {
           )
         ],
       ),
-      backgroundColor: TColor.white,
       body: ListView.separated(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-        itemBuilder: ((context, index) {
-          var nObj = notificationArr[index] as Map? ?? {};
-          return NotificationRow(nObj: nObj);
-      }), separatorBuilder: (context, index){
-        return Divider(color: TColor.gray.withOpacity(0.5), height: 1, );
-      }, itemCount: notificationArr.length),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+          itemBuilder: ((context, index) {
+            var nObj = notificationArr[index] as Map? ?? {};
+            return NotificationRow(nObj: nObj);
+          }),
+          separatorBuilder: (context, index) {
+            return Divider(
+              color: TColor.gray.withOpacity(0.5),
+              height: 1,
+            );
+          },
+          itemCount: notificationArr.length),
     );
   }
 }

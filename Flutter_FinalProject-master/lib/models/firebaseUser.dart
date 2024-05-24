@@ -29,8 +29,8 @@ class FirebaseUser {
     return {
       'id': id,
       'Name': Name,
-      'completed': Weight,
-      'price': Height,
+      'Weight': Weight,
+      'Height': Height,
     };
   }
 }

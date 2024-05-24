@@ -11,6 +11,13 @@ class AddTodo extends TodoEvent {
   AddTodo(this.todo);
 }
 
+class LoadUserByEmail extends TodoEvent {
+  final String email;
+
+  LoadUserByEmail(this.email);
+}
+
+
 // class UpdateTodo extends TodoEvent {
 //   final FirebaseUser todo;
 

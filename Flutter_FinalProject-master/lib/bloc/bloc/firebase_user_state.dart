@@ -1,4 +1,3 @@
-
 import 'package:crud/models/firebaseUser.dart';
 
 abstract class TodoState {}
@@ -23,4 +22,10 @@ class TodoError extends TodoState {
   final String errorMessage;
 
   TodoError(this.errorMessage);
+}
+
+class UserLoaded extends TodoState {
+  final FirebaseUser user;
+
+  UserLoaded(this.user);
 }

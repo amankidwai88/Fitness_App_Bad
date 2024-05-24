@@ -4,6 +4,7 @@ import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/bloc/user/my_user_bloc.dart';
 import 'package:crud/screens/Dashboard/dashboard.dart';
 import 'package:crud/screens/login_signup/welcome.dart';
+import 'package:crud/screens/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,11 +18,8 @@ class MyAppView extends StatelessWidget {
       title: 'PROJECT',
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
-
           primary: Colors.blueGrey,
-
           error: Colors.red,
-
         ),
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -42,12 +40,14 @@ class MyAppView extends StatelessWidget {
                       myUserId:
                           context.read<AuthenticationBloc>().state.user!.uid)),
               ),
-
-              
             ],
-            child: const HomeScreen(), 
+            child: const HomeScreen(),
           );
-        } else {
+        }
+        // else if (state.status == AuthenticationStatus.unknown) {
+        //             return const ProfilePage();
+        // }
+        else {
           return const WelcomeScreen();
         }
       }),
