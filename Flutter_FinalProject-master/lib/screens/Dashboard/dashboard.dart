@@ -8,13 +8,12 @@ import 'package:crud/common_widget/histogram.dart';
 
 import 'package:crud/repo/firebaseUser.dart';
 
+
 import 'package:crud/screens/Dashboard/notification_view.dart';
-import 'package:crud/screens/Profile/CreateProfile.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
 import 'package:crud/screens/exercise/exercise_provider.dart';
 import 'package:crud/screens/exercise/instructions_page.dart';
-import 'package:crud/screens/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +153,6 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-
         drawer: Container(
           width: MediaQuery.of(context).size.width * 0.75,
           child: Drawer(
@@ -200,36 +198,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pop(context);
                     },
                   ),
-                  // ListTile(
-                  //   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
-                  //   title: Text("Create Profile",
-                  //       style: TextStyle(color: Colors.grey[400])),
-                  //   onTap: () {
-                  //     Navigator.pop(context); // Close the drawer
-                  //     // Navigate to the Home screen
-                  //     Navigator.push(
-                  //       //check alignment sign up > profile else login > home page
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) =>
-                  //               const CompleteProfileView("ghgh")),
-                  //     );
-                  //   },
-                  // ),
-                  // ListTile(
-                  //   leading: Icon(Icons.account_circle, color: Colors.grey[400]),
-                  //   title: Text("Profile Aman",
-                  //       style: TextStyle(color: Colors.grey[400])),
-                  //   onTap: () {
-                  //     Navigator.pop(context); // Close the drawer
-                  //     // Navigate to the Home screen
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => const ProfilePage()),
-                  //     );
-                  //   },
-                  // ),
                   ListTile(
                     leading: Icon(Icons.account_circle, color: Colors.black),
                     title: Text("View Profile",
@@ -315,231 +283,231 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<TodoBloc, TodoState>(
-          builder: (context, state) {
-            if (state is TodoLoading) {
-              // print("loading");
+        body: BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
+          if (state is TodoLoading) {
+            // print("loading");
 
-              // print(currentUser?.email);
-              return const Center(child: CircularProgressIndicator());
-              // return Container();
-            } else if (state is TodoLoaded) {
-              // print("Gello");
-              // print(state.user.Name);
+            // print(currentUser?.email);
+            return const Center(child: CircularProgressIndicator());
+            // return Container();
+          } else if (state is TodoLoaded) {
+            // print("Gello");
+            // print(state.user.Name);
 
-              //Mannual name from firebase
-              final userStream =
-                  _firestoreService.getUserByEmail(currentUser?.email ?? '');
-              userStream.listen((user) {
-                userName = user.Name;
-                // userWeight = user.Weight as double;
-                // userHeight = user.Height as double;
+            //Mannual name from firebase
+            final userStream =
+                _firestoreService.getUserByEmail(currentUser?.email ?? '');
+            userStream.listen((user) {
+              userName = user.Name;
+              // userWeight = user.Weight as double;
+              // userHeight = user.Height as double;
 
-                // print(name);
-              });
+              print(userName);
+            });
 
-              // setState(() {
-              //     userName = user.Name; // Update the userName state variable
-              //   });
+            // setState(() {
+            //     userName = user.Name; // Update the userName state variable
+            //   });
 
-              return SingleChildScrollView(
-                  child: SafeArea(
-                      child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Welcome Back,",
-                                          style: TextStyle(
-                                              // color: TColor.gray,
-                                              fontSize: 12),
-                                        ),
-                                        Text(
-                                          '${userName}',
-                                          style: TextStyle(
-                                              // color: TColor.black,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: media.width * 0.05),
-                                Container(
-                                  height: media.width * 0.4,
-                                  decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                          colors: TColor.primaryG),
-                                      borderRadius: BorderRadius.circular(
-                                          media.width * 0.075)),
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/bg_dots.png",
-                                        height: media.width * 0.4,
-                                        width: double.maxFinite,
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 25, horizontal: 15),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "BMI (Body Mass Index)",
-                                                  style: TextStyle(
-                                                      color: TColor.white,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  "You have a normal weight",
-                                                  style: TextStyle(
-                                                      color: TColor.white
-                                                          .withOpacity(0.7),
-                                                      fontSize: 12),
-                                                ),
-                                                // OutlinedButton(
-                                                //     onPressed: () {},
-                                                //     style: OutlinedButton.styleFrom(
-                                                //         backgroundColor: TColor.gray),
-                                                //     child: Text("View more"))
-                                              ],
-                                            ),
-                                            AspectRatio(
-                                              aspectRatio: 1,
-                                              child: PieChart(
-                                                PieChartData(
-                                                  pieTouchData: PieTouchData(
-                                                    touchCallback: (FlTouchEvent
-                                                            event,
-                                                        pieTouchResponse) {},
-                                                  ),
-                                                  startDegreeOffset: 250,
-                                                  borderData: FlBorderData(
-                                                    show: false,
-                                                  ),
-                                                  sectionsSpace: 1,
-                                                  centerSpaceRadius: 0,
-                                                  sections: showingSections(),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: media.width * 0.05,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15, horizontal: 15),
-                                  decoration: BoxDecoration(
-                                    color:
-                                        TColor.primaryColor2.withOpacity(0.3),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+            return SingleChildScrollView(
+                child: SafeArea(
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Today Target",
+                                        "Welcome Back,",
                                         style: TextStyle(
-                                            color: TColor.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700),
+                                            // color: TColor.gray,
+                                            fontSize: 12),
                                       ),
-                                      const SizedBox(
-                                        width: 70,
-                                        height: 25,
+                                      Text(
+                                        '${userName}',
+                                        style: TextStyle(
+                                            // color: TColor.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700),
                                       ),
                                     ],
                                   ),
-                                ),
-                                SizedBox(
-                                  height: media.width * 0.01,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                ],
+                              ),
+                              SizedBox(height: media.width * 0.05),
+                              Container(
+                                height: media.width * 0.4,
+                                decoration: BoxDecoration(
+                                    gradient:
+                                        LinearGradient(colors: TColor.primaryG),
+                                    borderRadius: BorderRadius.circular(
+                                        media.width * 0.075)),
+                                child: Stack(
+                                  alignment: Alignment.center,
                                   children: [
-                                    Text(
-                                      "Workout",
-                                      style: TextStyle(
-                                          color: TColor.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700),
+                                    Image.asset(
+                                      "assets/bg_dots.png",
+                                      height: media.width * 0.4,
+                                      width: double.maxFinite,
+                                      fit: BoxFit.fitHeight,
                                     ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ExerciseView()),
-                                        );
-                                      },
-                                      child: Text(
-                                        "See More",
-                                        style: TextStyle(
-                                            color: TColor.gray,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 25, horizontal: 15),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "BMI (Body Mass Index)",
+                                                style: TextStyle(
+                                                    color: TColor.white,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                              Text(
+                                                "You have a normal weight",
+                                                style: TextStyle(
+                                                    color: TColor.white
+                                                        .withOpacity(0.7),
+                                                    fontSize: 12),
+                                              ),
+                                              // OutlinedButton(
+                                              //     onPressed: () {},
+                                              //     style: OutlinedButton.styleFrom(
+                                              //         backgroundColor: TColor.gray),
+                                              //     child: Text("View more"))
+                                            ],
+                                          ),
+                                          AspectRatio(
+                                            aspectRatio: 1,
+                                            child: PieChart(
+                                              PieChartData(
+                                                pieTouchData: PieTouchData(
+                                                  touchCallback:
+                                                      (FlTouchEvent event,
+                                                          pieTouchResponse) {},
+                                                ),
+                                                startDegreeOffset: 250,
+                                                borderData: FlBorderData(
+                                                  show: false,
+                                                ),
+                                                sectionsSpace: 1,
+                                                centerSpaceRadius: 0,
+                                                sections: showingSections(),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     )
                                   ],
                                 ),
-                                SizedBox(
-                                  height: media.width * 0.05,
+                              ),
+                              SizedBox(
+                                height: media.width * 0.05,
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 15),
+                                decoration: BoxDecoration(
+                                  color: TColor.primaryColor2.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: media.width * 0.05,
-                          ),
-                          //histogram code
-                          ChangeNotifierProvider(
-                            create: (context) => ExerciseProvider(),
-                            child: Histogram(),
-                          ),
-                          ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: lastWorkoutArr.length,
-                              itemBuilder: (context, index) {
-                                var wObj = lastWorkoutArr[index] as Map? ?? {};
-                                return InkWell(
-                                    onTap: () {},
-                                    child: WorkoutRow(wObj: wObj));
-                              }),
-                        ])))));
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Today Target",
+                                      style: TextStyle(
+                                          color: TColor.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    const SizedBox(
+                                      width: 70,
+                                      height: 25,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: media.width * 0.01,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Workout",
+                                    style: TextStyle(
+                                        color: TColor.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ExerciseView()),
+                                      );
+                                    },
+                                    child: Text(
+                                      "See More",
+                                      style: TextStyle(
+                                          color: TColor.gray,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: media.width * 0.05,
+                              ),
 
+                              SizedBox(
+                                height: media.width * 0.05,
+                              ),
+                              //histogram code
+                              ChangeNotifierProvider(
+                                create: (context) => ExerciseProvider(),
+                                child: Histogram(),
+                              ),
+                              ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: lastWorkoutArr.length,
+                                  itemBuilder: (context, index) {
+                                    var wObj =
+                                        lastWorkoutArr[index] as Map? ?? {};
+                                    return InkWell(
+                                        onTap: () {},
+                                        child: WorkoutRow(wObj: wObj));
+                                  }),
+                            ]))));
+          } else {
+            return Container();
+          }
+        }));
   }
 
   Widget _buildMenuButton({

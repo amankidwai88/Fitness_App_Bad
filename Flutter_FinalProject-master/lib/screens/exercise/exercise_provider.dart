@@ -27,3 +27,32 @@ class ExerciseProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+// class ExerciseProvider with ChangeNotifier {
+//   List<Exercise> _exercises = [];
+
+//   List<Exercise> get exercises => _exercises;
+
+//   ExerciseProvider() {
+//     fetchExercises();
+//   }
+
+//   Future<void> fetchExercises() async {
+//     final currentUser = FirebaseAuth.instance.currentUser;
+//     if (currentUser == null) {
+//       return;
+//     }
+
+//     final userId = currentUser.email;
+
+//     final snapshot = await FirebaseFirestore.instance
+//         .collection('exercises')
+//         .where('id', isEqualTo: userId)
+//         .get();
+
+//     _exercises = snapshot.docs
+//         .map((doc) => Exercise.fromMap(doc.data(), doc.id))
+//         .toList();
+//     notifyListeners();
+//   }
+// }
