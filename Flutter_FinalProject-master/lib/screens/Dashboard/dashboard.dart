@@ -8,7 +8,6 @@ import 'package:crud/common_widget/histogram.dart';
 
 import 'package:crud/repo/firebaseUser.dart';
 
-
 import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
@@ -487,10 +486,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: media.width * 0.05,
                               ),
                               //histogram code
-                              ChangeNotifierProvider(
-                                create: (context) => ExerciseProvider(),
-                                child: Histogram(),
-                              ),
+                              // ChangeNotifierProvider(
+                              //   create: (context) => ExerciseProvider(),
+                              //   child: Histogram(),
+                              // ),
                               ListView.builder(
                                   padding: EdgeInsets.zero,
                                   physics: const NeverScrollableScrollPhysics(),

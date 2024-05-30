@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:crud/screens/Camera/Preview.dart';
-
+import 'package:crud/screens/Camera/video.dart';
 import '../../common/color_extension.dart';
 
 class ExercisesStepDetails extends StatefulWidget {
@@ -126,7 +126,14 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                             borderRadius: BorderRadius.circular(20)),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Navigate to the camera screen upon button press
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VideoPlayerScreen()),
+                          );
+                        },
                         icon: Hero(
                           tag:
                               'play_button_${widget.eObj["title"]}', // Unique tag based on title
@@ -309,6 +316,22 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   );
                 }),
           ),
+          // Positioned(
+          //   left: 10,
+          //   right: 10,
+          //   bottom: 30,
+          //   child: RoundButton(
+          //       title: "Demo Video",
+          //       elevation: 0,
+          //       onPressed: () {
+          //         // Navigate to the camera screen upon button press
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => VideoPlayerScreen()),
+          //         );
+          //       }),
+          // ),
         ],
       ),
     );
