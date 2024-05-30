@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final currentUser = FirebaseAuth.instance.currentUser;
   late final FirestoreService _firestoreService;
   String userName = "user";
-  double userWeight = 60;
-  double userHeight = 120;
+  late double userWeight = 60;
+  late double userHeight = 120;
 
   List lastWorkoutArr = [
     {
@@ -223,9 +223,13 @@ class _HomeScreenState extends State<HomeScreen> {
               _firestoreService.getUserByEmail(currentUser?.email ?? '');
           userStream.listen((user) {
             userName = user.Name;
-            userWeight = user.Weight as double;
-            userHeight = user.Height as double;
 
+            // setState(() {
+            //   userWeight = user.Weight as double;
+            //   userHeight = user.Height as double;
+            // });
+
+            // print("user weight is  $userWeight");
             // print(userName);
           });
 
@@ -233,6 +237,8 @@ class _HomeScreenState extends State<HomeScreen> {
           String bmiString = bmi.toStringAsFixed(2);
           bmi = double.parse(
               bmiString); // This step is optional if you need the value as a double
+          print("main is  $bmi");
+
           String bmiMessage =
               bmi < 24.9 ? "You have a normal weight" : "You are overweight";
 
@@ -480,8 +486,10 @@ class _HomeScreenState extends State<HomeScreen> {
         var color0 = TColor.secondaryColor1;
         double bmi = (userWeight / (userHeight * userHeight)) * 10000;
         String bmiString = bmi.toStringAsFixed(2);
+
         bmi = double.parse(
             bmiString); // This step is optional if you need the value as a double
+        print("Pie chart $bmi");
 
         switch (i) {
           case 0:
