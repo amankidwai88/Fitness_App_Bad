@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final currentUser = FirebaseAuth.instance.currentUser;
   late final FirestoreService _firestoreService;
   String userName = "user";
-  late double userWeight ;
-  late double userHeight;
+  double userWeight = 60;
+  double userHeight = 120;
 
   List lastWorkoutArr = [
     {
