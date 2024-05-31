@@ -3,7 +3,6 @@ import 'package:crud/common_widget/workout_pg/round_button_Aman.dart';
 import 'package:flutter/material.dart';
 import 'workout_detail_view.dart';
 
-
 class WorkoutView extends StatefulWidget {
   const WorkoutView({super.key});
 
@@ -14,28 +13,28 @@ class WorkoutView extends StatefulWidget {
 class _WorkoutViewState extends State<WorkoutView> {
   List workArr = [
     {
-      "name": "Climber",
+      "name": "Bodybuilder",
       "image": "assets/img/1.png",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou be fit"
     },
     {
-      "name": "Climber",
+      "name": "Powerlifter",
       "image": "assets/img/2.png",
       "title": "workout",
       "subtitle": "Personalized workouts will help\nyou gain strength"
     },
     {
-      "name": "Climber",
+      "name": "Athlete",
       "image": "assets/img/5.png",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain muscle"
     },
     {
-      "name": "Climber",
+      "name": "Fitness",
       "image": "assets/img/3.png",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou make healthier choices"
     },
   ];
 
