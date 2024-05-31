@@ -13,42 +13,44 @@ class WorkoutDetailView extends StatefulWidget {
 
 class _WorkoutDetailViewState extends State<WorkoutDetailView> {
   List workArr = [
-    {"name": "Running", "image": "assets/img/1.png"},
-    {"name": "Jumping", "image": "assets/img/2.png"},
+    {"name": "Strength", "image": "assets/img/1.png"},
+    {"name": "Bodybuilding", "image": "assets/img/2.png"},
     {
-      "name": "Running",
-      "image": "assets/img/5.png",
+      "name": "Strength",
+      "image": "assets/img/newimage.jpg",
     },
     {
-      "name": "Jumping",
+      "name": "Bodybuilding",
       "image": "assets/img/3.png",
     },
   ];
 
   List responseArr = [
     {
-      "name": "Mikhail Eduardovich",
-      "time": "09 days ago",
+      "name": "John Doe",
+      "time": "9 days ago",
       "image": "assets/img/u2.png",
-      "message": "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit,"
+      "message": "I really enjoyed this workout! It was challenging but fun."
     },
     {
-      "name": "Mikhail Eduardovich",
+      "name": "Jane Smith",
       "time": "11 days ago",
       "image": "assets/img/u1.png",
-      "message": "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit,"
+      "message":
+          "This workout helped me improve my endurance. Highly recommend!"
     },
     {
-      "name": "Mikhail Eduardovich",
+      "name": "Mike Johnson",
       "time": "12 days ago",
       "image": "assets/img/u2.png",
-      "message": "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit,"
+      "message": "Great workout routine. It's perfect for beginners."
     },
     {
-      "name": "Mikhail Eduardovich",
+      "name": "Sarah Thompson",
       "time": "13 days ago",
       "image": "assets/img/u1.png",
-      "message": "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit,"
+      "message":
+          "I love this workout! It's a great way to stay active and healthy."
     }
   ];
 
@@ -70,7 +72,7 @@ class _WorkoutDetailViewState extends State<WorkoutDetailView> {
               height: 25,
             )),
         title: Text(
-          "Climbers",
+          "Fitness Freaks",
           style: TextStyle(
               color: TColor.white, fontSize: 20, fontWeight: FontWeight.w700),
         ),

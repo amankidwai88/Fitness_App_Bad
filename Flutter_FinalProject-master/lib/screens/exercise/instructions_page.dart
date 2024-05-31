@@ -111,7 +111,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                             gradient: LinearGradient(colors: TColor.primaryG),
                             borderRadius: BorderRadius.circular(20)),
                         child: Image.asset(
-                          "assets/img/video_temp.png",
+                          "assets/img/Untitled design (1).png",
                           width: media.width,
                           height: media.width * 0.43,
                           fit: BoxFit.contain,

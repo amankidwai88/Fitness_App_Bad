@@ -30,7 +30,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
     },
     {
       "no": "03",
-      "title": "Drive Through Your Heels",
+      "title": "Drive Through Your Feet",
       "detail":
           "Exhale as you drive through your heels and extend your legs to return to the starting position. Keep your chest up and your core engaged throughout the movement."
     },
@@ -108,7 +108,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                         gradient: LinearGradient(colors: TColor.primaryG),
                         borderRadius: BorderRadius.circular(20)),
                     child: Image.asset(
-                      "assets/img/video_temp.png",
+                      "assets/img/Untitled design.png",
                       width: media.width,
                       height: media.width * 0.43,
                       fit: BoxFit.contain,
