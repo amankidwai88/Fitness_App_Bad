@@ -261,7 +261,7 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
 
   @override
   Widget build(BuildContext context) {
-    final TodoBloc _todoBloc = BlocProvider.of<TodoBloc>(context);
+    // final TodoBloc _todoBloc = BlocProvider.of<TodoBloc>(context);
 
     var media = MediaQuery.of(context).size;
     // ignore: deprecated_member_use
