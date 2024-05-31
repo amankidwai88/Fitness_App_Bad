@@ -85,7 +85,7 @@ class _ProfileViewState extends State<ProfileView> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.asset(
-                                  "assets/img/u2.png",
+                                  "assets/icon.jpeg",
                                   width: 50,
                                   height: 50,
                                   fit: BoxFit.cover,
@@ -145,8 +145,7 @@ class _ProfileViewState extends State<ProfileView> {
                               ),
                               Expanded(
                                 child: TitleSubtitleCell(
-                                  title:
-                                      "Unknown", // Assuming Age is not provided
+                                  title: "22", // Assuming Age is not provided
                                   subtitle: "Age",
                                 ),
                               ),

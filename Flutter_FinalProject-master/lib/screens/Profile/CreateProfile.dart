@@ -417,10 +417,17 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                                                 value.isEmpty) {
                                               return 'Please enter your weight';
                                             }
-                                            if(value.length > 3){
-                                              return 'Please enter a correct weight';
-
+                                            final number =
+                                                double.tryParse(value);
+                                            if (number == null) {
+                                              return 'Please enter your weight';
                                             }
+
+                                            // Check if the number is greater than 150
+                                            if (number > 250) {
+                                              return 'Please enter a correct weight';
+                                            }
+
                                             return null;
                                           },
                                         ),
@@ -464,6 +471,17 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                                                 value.isEmpty) {
                                               return 'Please enter your height';
                                             }
+                                            final number =
+                                                double.tryParse(value);
+                                            if (number == null) {
+                                              return 'Please enter your height';
+                                            }
+
+                                            // Check if the number is greater than 150
+                                            if (number > 250) {
+                                              return 'Please enter a correct height';
+                                            }
+
                                             return null;
                                           },
                                         ),

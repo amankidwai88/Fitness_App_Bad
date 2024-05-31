@@ -3,6 +3,7 @@ import 'package:crud/bloc/bloc/firebase_user_state.dart';
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
+import 'package:crud/models/firebaseUser.dart';
 
 import 'package:crud/repo/firebaseUser.dart';
 
@@ -22,11 +23,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final currentUser = FirebaseAuth.instance.currentUser;
-  late final FirestoreService _firestoreService;
-  String userName = "user";
-  late double userWeight = 50;
-  late double userHeight = 150;
+  final FirestoreService _firestoreService = FirestoreService();
+  User? currentUser;
 
   List lastWorkoutArr = [
     {
@@ -58,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
-    _firestoreService = FirestoreService();
+    currentUser = FirebaseAuth.instance.currentUser;
   }
 
   @override
@@ -67,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: Colors.grey[300], // Set the app bar color
+        backgroundColor: TColor.backgrouncolor, // Set the app bar color
         // bottomNavigationBar: BottomAppBar(
         //   height: 65,
         //   // color: Colors.white60,
@@ -139,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: Container(
           width: MediaQuery.of(context).size.width * 0.75,
           child: Drawer(
-            backgroundColor: Colors.grey[300],
+            backgroundColor: TColor.backgrouncolor,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Column(
@@ -212,232 +209,248 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        body: BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
-          //Mannual name from firebase
-          final userStream =
-              _firestoreService.getUserByEmail(currentUser?.email ?? '');
-          userStream.listen((user) {
-            userName = user.Name;
-            // userWeight = user.Weight as double;
-            // userHeight = user.Height as double;
+        body: currentUser == null
+            ? Center(child: Text("No user signed in"))
+            : StreamBuilder<FirebaseUser>(
+                stream:
+                    _firestoreService.getUserByEmail(currentUser!.email ?? ''),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text("Error: ${snapshot.error}"));
+                  } else if (!snapshot.hasData) {
+                    return Center(child: Text("No user data found"));
+                  } else {
+                    final userData = snapshot.data!;
+                    final weight = double.parse(
+                        userData.Weight); // Convert Weight to double
+                    final height = double.parse(
+                        userData.Height); // Convert Height to double
+                    final bmi = (weight / (height * height)) * 10000;
+                    // Calculate BMI
+                    print(bmi);
 
-            // print("user weight is  $userWeight");
-            // print(userName);
-          });
-
-          // setState(() {
-          //   userWeight;
-          //   // userHeight = user.Height as double;
-          //   // userHeight = 100;
-          // });
-
-          double bmi = (userWeight / (userHeight * userHeight)) * 10000;
-          String bmiString = bmi.toStringAsFixed(2);
-          bmi = double.parse(
-              bmiString); // This step is optional if you need the value as a double
-          print("main is  $bmi");
-
-          String bmiMessage =
-              bmi < 24.9 ? "You have a normal weight" : "You are overweight";
-
-          return SingleChildScrollView(
-              child: SafeArea(
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "Welcome Back,",
-                                      style: TextStyle(
-                                          // color: TColor.gray,
-                                          fontSize: 12),
-                                    ),
-                                    Text(
-                                      userName,
-                                      style: const TextStyle(
-                                          // color: TColor.black,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: media.width * 0.05),
-                            Container(
-                              height: media.width * 0.4,
-                              decoration: BoxDecoration(
-                                  gradient:
-                                      LinearGradient(colors: TColor.primaryG),
-                                  borderRadius: BorderRadius.circular(
-                                      media.width * 0.075)),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/bg_dots.png",
-                                    height: media.width * 0.4,
-                                    width: double.maxFinite,
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 25, horizontal: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
+                    return SingleChildScrollView(
+                        child: SafeArea(
+                            child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                "Welcome Back,",
+                                                style: TextStyle(
+                                                    // color: TColor.gray,
+                                                    fontSize: 12),
+                                              ),
+                                              Text(
+                                                userData.Name ?? "No Name",
+                                                style: const TextStyle(
+                                                    // color: TColor.black,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: media.width * 0.05),
+                                      Container(
+                                        height: media.width * 0.4,
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: TColor.primaryG),
+                                            borderRadius: BorderRadius.circular(
+                                                media.width * 0.075)),
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Image.asset(
+                                              "assets/bg_dots.png",
+                                              height: media.width * 0.4,
+                                              width: double.maxFinite,
+                                              fit: BoxFit.fitHeight,
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 25,
+                                                      horizontal: 15),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        "BMI (Body Mass Index)",
+                                                        style: TextStyle(
+                                                            color: TColor.white,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                      ),
+                                                      Text(
+                                                        // "You have a normal weight"
+                                                        bmi < 24.9
+                                                            ? "You have a normal weight"
+                                                            : "You are overweight",
+                                                        style: TextStyle(
+                                                            color: TColor.white
+                                                                .withOpacity(
+                                                                    0.7),
+                                                            fontSize: 12),
+                                                      ),
+                                                      // OutlinedButton(
+                                                      //     onPressed: () {},
+                                                      //     style: OutlinedButton.styleFrom(
+                                                      //         backgroundColor: TColor.gray),
+                                                      //     child: Text("View more"))
+                                                    ],
+                                                  ),
+                                                  AspectRatio(
+                                                    aspectRatio: 1,
+                                                    child: PieChart(
+                                                      PieChartData(
+                                                        pieTouchData:
+                                                            PieTouchData(
+                                                          touchCallback:
+                                                              (FlTouchEvent
+                                                                      event,
+                                                                  pieTouchResponse) {},
+                                                        ),
+                                                        startDegreeOffset: 250,
+                                                        borderData:
+                                                            FlBorderData(
+                                                          show: false,
+                                                        ),
+                                                        sectionsSpace: 1,
+                                                        centerSpaceRadius: 0,
+                                                        sections:
+                                                            showingSections(
+                                                                bmi),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: media.width * 0.05,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15, horizontal: 15),
+                                        decoration: BoxDecoration(
+                                          color: TColor.primaryColor2
+                                              .withOpacity(0.3),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "BMI (Body Mass Index)",
+                                              "Today Target",
                                               style: TextStyle(
-                                                  color: TColor.white,
+                                                  color: TColor.black,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w700),
                                             ),
-                                            Text(
-                                              // "You have a normal weight"
-                                              bmiMessage,
-                                              style: TextStyle(
-                                                  color: TColor.white
-                                                      .withOpacity(0.7),
-                                                  fontSize: 12),
+                                            const SizedBox(
+                                              width: 70,
+                                              height: 25,
                                             ),
-                                            // OutlinedButton(
-                                            //     onPressed: () {},
-                                            //     style: OutlinedButton.styleFrom(
-                                            //         backgroundColor: TColor.gray),
-                                            //     child: Text("View more"))
                                           ],
                                         ),
-                                        AspectRatio(
-                                          aspectRatio: 1,
-                                          child: PieChart(
-                                            PieChartData(
-                                              pieTouchData: PieTouchData(
-                                                touchCallback:
-                                                    (FlTouchEvent event,
-                                                        pieTouchResponse) {},
-                                              ),
-                                              startDegreeOffset: 250,
-                                              borderData: FlBorderData(
-                                                show: false,
-                                              ),
-                                              sectionsSpace: 1,
-                                              centerSpaceRadius: 0,
-                                              sections: showingSections(),
-                                            ),
+                                      ),
+                                      SizedBox(
+                                        height: media.width * 0.01,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Workout",
+                                            style: TextStyle(
+                                                color: TColor.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: media.width * 0.05,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 15),
-                              decoration: BoxDecoration(
-                                color: TColor.primaryColor2.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Today Target",
-                                    style: TextStyle(
-                                        color: TColor.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  const SizedBox(
-                                    width: 70,
-                                    height: 25,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: media.width * 0.01,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Workout",
-                                  style: TextStyle(
-                                      color: TColor.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ExerciseView()),
-                                    );
-                                  },
-                                  child: Text(
-                                    "See More",
-                                    style: TextStyle(
-                                        color: TColor.gray,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: media.width * 0.05,
-                            ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ExerciseView()),
+                                              );
+                                            },
+                                            child: Text(
+                                              "See More",
+                                              style: TextStyle(
+                                                  color: TColor.gray,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          )
+                                        ],
+                                      ),
 
-                            SizedBox(
-                              height: media.width * 0.05,
-                            ),
-                            //histogram code
-                            // ChangeNotifierProvider(
-                            //   create: (context) => ExerciseProvider(),
-                            //   child: Histogram(),
-                            // ),
-                            ListView.builder(
-                                padding: EdgeInsets.zero,
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: lastWorkoutArr.length,
-                                itemBuilder: (context, index) {
-                                  var wObj =
-                                      lastWorkoutArr[index] as Map? ?? {};
-                                  return InkWell(
-                                      onTap: () {},
-                                      child: WorkoutRow(wObj: wObj));
-                                }),
-                          ]))));
-        }
-            // else {
-            //   return Container();
-            // }
-            // }
-            ));
+                                      // SizedBox(
+                                      //   height: media.width * 0.05,
+                                      // ),
+                                      //histogram code
+                                      // ChangeNotifierProvider(
+                                      //   create: (context) => ExerciseProvider(),
+                                      //   child: Histogram(),
+                                      // ),
+                                      ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          itemCount: lastWorkoutArr.length,
+                                          itemBuilder: (context, index) {
+                                            var wObj =
+                                                lastWorkoutArr[index] as Map? ??
+                                                    {};
+                                            return InkWell(
+                                                onTap: () {},
+                                                child: WorkoutRow(wObj: wObj));
+                                          }),
+                                    ]))));
+                  }
+                  // else {
+                  //   return Container();
+                  // }
+                  // }
+                }));
   }
 
   Widget _buildMenuButton({
@@ -477,16 +490,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(double bmi) {
     return List.generate(
       2,
       (i) {
         var color0 = TColor.secondaryColor1;
-        double bmi = (userWeight / (userHeight * userHeight)) * 10000;
         String bmiString = bmi.toStringAsFixed(2);
 
         bmi = double.parse(
             bmiString); // This step is optional if you need the value as a double
+
         print("Pie chart $bmi");
 
         switch (i) {
