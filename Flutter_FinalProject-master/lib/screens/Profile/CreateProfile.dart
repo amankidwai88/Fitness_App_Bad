@@ -392,30 +392,34 @@ class _CompleteProfileViewState extends State<CompleteProfileView> {
                                   Row(
                                     children: [
                                       Expanded(
-                                        child: TextFormField(
+                                        child: RoundTextField(
                                           controller: txtWeight,
                                           keyboardType: TextInputType.number,
-                                          // hitText: "Your Weight",
-                                          // icon: "assets/img/weight.png",
-                                          decoration: InputDecoration(
-                                            hintText: "Your Weight",
-                                            icon: Image.asset(
-                                                "assets/img/weight.png"),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0),
-                                            ),
-                                          ),
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(3),
-                                            FilteringTextInputFormatter
-                                                .digitsOnly,
-                                          ],
+                                          hitText: "Your Weight",
+                                          icon: "assets/img/weight.png",
+                                          // decoration: InputDecoration(
+                                          //   hintText: "Your Weight",
+                                          //   icon: Image.asset(
+                                          //       "assets/img/weight.png"),
+                                          //   border: OutlineInputBorder(
+                                          //     borderRadius:
+                                          //         BorderRadius.circular(30.0),
+                                          //   ),
+                                          // ),
+                                          // inputFormatters: [
+                                          //   LengthLimitingTextInputFormatter(3),
+                                          //   FilteringTextInputFormatter
+                                          //       .digitsOnly,
+                                          // ],
 
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty) {
                                               return 'Please enter your weight';
+                                            }
+                                            if(value.length > 3){
+                                              return 'Please enter a correct weight';
+
                                             }
                                             return null;
                                           },
