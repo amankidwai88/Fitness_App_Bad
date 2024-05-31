@@ -22,7 +22,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final passwordController1 = TextEditingController();
+
   bool obscurePassword = true;
+  bool obscurePassword1 = true;
+
   IconData iconPassword = CupertinoIcons.eye_fill;
   final nameController = TextEditingController();
   bool signUpRequired = false;
@@ -169,6 +173,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         return 'Please fill in this field';
                       } else if (!passwordRexExp.hasMatch(val)) {
                         return 'Please enter a valid password';
+                      }
+                      return null;
+                    }),
+              ),
+
+              const SizedBox(height: 10),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: MyTextField(
+                    controller: passwordController1,
+                    hintText: 'Re-enter Password',
+                    obscureText: obscurePassword1,
+                    keyboardType: TextInputType.visiblePassword,
+                    prefixIcon: const Icon(CupertinoIcons.lock_fill),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          obscurePassword1 = !obscurePassword1;
+                          if (obscurePassword1) {
+                            iconPassword = CupertinoIcons.eye_fill;
+                          } else {
+                            iconPassword = CupertinoIcons.eye_slash_fill;
+                          }
+                        });
+                      },
+                      icon: Icon(iconPassword),
+                    ),
+                    validator: (val) {
+                      // if (val!.isEmpty) {
+                      //   return 'Please fill in this field';
+                      // } else if (!passwordRexExp.hasMatch(val)) {
+                      //   return 'Please enter a valid password';
+                      // } else
+                      if (val != passwordController.text) {
+                        return 'Password do not match';
                       }
                       return null;
                     }),
