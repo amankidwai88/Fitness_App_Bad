@@ -15,7 +15,7 @@ class _WorkoutViewState extends State<WorkoutView> {
     {
       "name": "Bodybuilder",
       "image": "assets/img/1.png",
-      "title": "workout",
+      "title": "work",
       "subtitle": "Personalized workouts will help\nyou be fit"
     },
     {

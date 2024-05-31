@@ -303,7 +303,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
           Positioned(
             left: 10,
             right: 10,
-            bottom: 0,
+            bottom: 10,
             child: RoundButton(
                 title: "Start Exercise",
                 elevation: 0,
@@ -311,7 +311,8 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   // Navigate to the camera screen upon button press
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const YourCameraWidget()),
+                    MaterialPageRoute(
+                        builder: (context) => const YourCameraWidget()),
                   );
                 }),
           ),

@@ -16,28 +16,28 @@ class _ExerciseViewState extends State<ExerciseView> {
   int isActiveTab = 0;
   List workArr = [
     {
-      "name": "Climber",
+      "name": "Bodybuilder",
       "image": "assets/img/1.png",
-      "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "title": "work",
+      "subtitle": "Personalized workouts will help\nyou be fit"
     },
     {
-      "name": "Climber",
+      "name": "Powerlifter",
       "image": "assets/img/2.png",
       "title": "workout",
       "subtitle": "Personalized workouts will help\nyou gain strength"
     },
     {
-      "name": "Climber",
+      "name": "Athlete",
       "image": "assets/img/5.png",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou gain muscle"
     },
     {
-      "name": "Climber",
+      "name": "Fitness",
       "image": "assets/img/3.png",
       "title": "workout",
-      "subtitle": "Personalized workouts will help\nyou gain strength"
+      "subtitle": "Personalized workouts will help\nyou make healthier choices"
     },
   ];
   @override

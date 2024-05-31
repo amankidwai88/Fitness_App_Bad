@@ -25,8 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final currentUser = FirebaseAuth.instance.currentUser;
   late final FirestoreService _firestoreService;
   String userName = "user";
-  late double userWeight = 60;
-  late double userHeight = 120;
+  late double userWeight = 50;
+  late double userHeight = 150;
 
   List lastWorkoutArr = [
     {
@@ -218,15 +218,18 @@ class _HomeScreenState extends State<HomeScreen> {
               _firestoreService.getUserByEmail(currentUser?.email ?? '');
           userStream.listen((user) {
             userName = user.Name;
-
-            // setState(() {
-            //   userWeight = user.Weight as double;
-            //   userHeight = user.Height as double;
-            // });
+            // userWeight = user.Weight as double;
+            // userHeight = user.Height as double;
 
             // print("user weight is  $userWeight");
             // print(userName);
           });
+
+          // setState(() {
+          //   userWeight;
+          //   // userHeight = user.Height as double;
+          //   // userHeight = 100;
+          // });
 
           double bmi = (userWeight / (userHeight * userHeight)) * 10000;
           String bmiString = bmi.toStringAsFixed(2);
