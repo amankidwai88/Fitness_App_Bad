@@ -1,6 +1,4 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:crud/common/color_extension.dart';
-import 'package:crud/common_widget/RoundButton_Profile.dart';
 import 'package:crud/models/firebaseUser.dart';
 import 'package:crud/repo/firebaseUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';

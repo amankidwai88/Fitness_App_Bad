@@ -1,5 +1,4 @@
 import 'package:crud/common_widget/RoundButton_Profile.dart';
-import 'package:crud/common_widget/RoundButton_Sticky.dart';
 import 'package:crud/common_widget/step_detail_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -312,7 +311,7 @@ class _ExercisesStepDetailsState extends State<ExercisesStepDetails> {
                   // Navigate to the camera screen upon button press
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => YourCameraWidget()),
+                    MaterialPageRoute(builder: (context) => const YourCameraWidget()),
                   );
                 }),
           ),

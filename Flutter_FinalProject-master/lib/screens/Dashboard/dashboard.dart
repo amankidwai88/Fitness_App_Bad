@@ -1,23 +1,18 @@
 import 'package:crud/bloc/bloc/firebase_user_bloc.dart';
-import 'package:crud/bloc/bloc/firebase_user_event.dart';
 import 'package:crud/bloc/bloc/firebase_user_state.dart';
 import 'package:crud/common_widget/dashboard/Workoutrow.dart';
 import 'package:crud/bloc/sign_in/sign_in_bloc.dart';
 import 'package:crud/common/color_extension.dart';
-import 'package:crud/common_widget/histogram.dart';
 
 import 'package:crud/repo/firebaseUser.dart';
 
 import 'package:crud/screens/Dashboard/notification_view.dart';
 import 'package:crud/screens/Profile/profile_view.dart';
 import 'package:crud/screens/exercise/exercise.dart';
-import 'package:crud/screens/exercise/exercise_provider.dart';
-import 'package:crud/screens/exercise/instructions_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -501,7 +496,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 titlePositionPercentageOffset: 0.55,
                 badgeWidget: Text(
                   "$bmi",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.w700),
